@@ -2,7 +2,7 @@
     <div class="top-bar">
         <div class="logo">
             <img src="@/assets/logo.png" class="logo-img" />
-            <p class="logo-name">Rouderls Board</p>
+            <p class="logo-name">Rhodes Board</p>
         </div>
         <div class="menu">
             <yk-button-vue nom="cprimary" class="menu-message">留言墙</yk-button-vue>
