@@ -1,11 +1,14 @@
 <template>
     <div>
-        <p>index of views</p>
-        <p class="title"> Rouderls board</p>
+
+        <topBar></topBar>
+        <video class="bg-video"></video>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+import topBar from '@/components/TopBar.vue'
 export default {
     data() {
         return {
@@ -14,7 +17,7 @@ export default {
     },
 
     components: {
-
+        topBar,
     },
 
     computed: {
@@ -39,11 +42,6 @@ export default {
 
 <style lang="less" scoped>
 
-.title {
-    font-size: 24px;
-    font-size: @size-16;
-    color: @warning-color;
-}
 
 
 </style>
