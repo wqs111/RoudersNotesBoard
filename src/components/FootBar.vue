@@ -92,6 +92,7 @@
 
 
   .arknights-footer {
+    
     background: #1a1a2e;
     border-top: 1px solid #4a4a6a;
     color: #a0a0c0;

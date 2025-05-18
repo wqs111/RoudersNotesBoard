@@ -5,7 +5,7 @@
             <p class="logo-name">Rhodes Board</p>
         </div>
         <div class="menu">
-            <yk-button-vue nom="cprimary" class="menu-message">留言墙</yk-button-vue>
+            <yk-button-vue nom="cprimary" class="menu-message">留言板</yk-button-vue>
             <yk-button-vue nom="csecondary" class="photo">照片墙</yk-button-vue>
         </div>
         <div class="user">
