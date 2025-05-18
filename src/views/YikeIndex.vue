@@ -40,5 +40,9 @@ export default {
 <style lang="less" scoped>
 .title {
     font-size: 24px;
+    font-size: @size-16;
+    color: @warning-color;
 }
+
+
 </style>

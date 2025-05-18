@@ -1,0 +1,64 @@
+// Colors whats the @ means? 
+// @ declear the following string is a mutable value
+@primary-color: #3b73f0;
+@link-color: #1890ff;
+@success-color: #22bf87;
+@warning-color: #f67770;
+@error-color: #f35248;
+
+// 中性色
+@gray-0: #202020;
+@gray-1: #5b5b5b;
+@gray-2: #949494;
+@gray-9: #f6f6f8;
+@gray-10: #ffffff;
+
+// font style
+@size-12: 12px;
+@size-14: 14px;
+@size-16: 16px;
+
+// 间距
+@padding-4: 4px;
+@padding-8: 8px;
+@padding-12: 12px;
+@padding-20: 20px;
+
+body {
+    padding:0px;
+    margin:0px;
+    line-height: 1.5;
+    color: @gray-0;
+    font-size: @size-14;
+    background-color: @gray-10;
+    transition: all 0.3s;   // all css 0.3s 平滑过渡
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased; // 抗锯齿
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none; // no point in list
+}
+
+img {
+    padding: 0;
+    margin: 0;
+    display: block; // better
+}
+
+a {
+    text-decoration: none;
+    &:hover  {
+        text-decoration: underline;
+    }
+}
+
+input, textarea {
+    outline: none;
+}

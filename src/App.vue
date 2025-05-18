@@ -1,5 +1,6 @@
 <template>
   <router-view></router-view>
+  <p class="ab"> aaa </p>
 </template>
 
 <script>
@@ -13,13 +14,10 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less">
+@import url(./styles/commons.less);
+.ab {
+  font-size: @size-16;
+  color: @warning-color;
 }
 </style>
