@@ -4,7 +4,10 @@
             <img src="@/assets/logo.png" class="logo-img" />
             <p class="logo-name">Rouderls Board</p>
         </div>
-        <div class="menu">some menu</div>
+        <div class="menu">
+            <yk-button-vue nom="cprimary" class="menu-message">留言墙</yk-button-vue>
+            <yk-button-vue nom="csecondary" class="photo">照片墙</yk-button-vue>
+        </div>
         <div class="user">
             <div class="user-head"></div>
         </div>
@@ -12,8 +15,16 @@
 </template>
 
 <script>
+import YkButtonVue from './YkButton.vue';
 export default {
+    data() {
+        return {
 
+        }
+    }, 
+    components: {
+        YkButtonVue,
+    }
 }
 </script>
 
