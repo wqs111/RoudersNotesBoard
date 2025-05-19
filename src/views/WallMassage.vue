@@ -11,11 +11,19 @@
             :class="{lselected:nlabel==index}" @click="selectNode(index)"
             >{{ e }}</p>
         </div>
+        <div class="card">
+            <node-card-vue v-for="(e, index) in node" :key="index" :note="e"
+                class="card-inner"
+            ></node-card-vue>
+        </div>
+        
     </div>
 </template>
 
 <script>
 import { wallType, label } from '@/utils/data';
+import {node} from '../../mock/index'
+import NodeCardVue from '@/components/NodeCard.vue';
 export default {
     data() {
         return {
@@ -23,7 +31,11 @@ export default {
             label,
             id: 0,  // 切换留言板和照片墙
             nlabel: -1,  // 选中的标签，默认-1 all
+            node: node.data,
         }
+    },
+    components: {
+        NodeCardVue,
     },
 
     methods: {
@@ -52,6 +64,7 @@ export default {
     }
 
     .label {
+        display: block;
         display: flex;
         justify-content: center;
         margin-top: 40px;
@@ -66,7 +79,18 @@ export default {
     .lselected {
         color: @gray-0;
         font-weight: 600;
-        border: 1px solid rgba(32,32,32, 1);
+        border: 1px solid rgba(32,32,32, 0.9);
+    }
+    .card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 28px;
+        border: 1px;
+
+        .card-inner {
+            margin: 6px;
+        }
     }
 }
 </style>
