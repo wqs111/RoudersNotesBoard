@@ -14,5 +14,7 @@ export const node = Mock.mock({
         "imgurl|0-4": 0,
         "revoke|0-20": 0,
         "report|0-20": 0,
+
+        "type":0,
     }]
 })

@@ -1,42 +1,64 @@
 <template>
     <div class="yk-node-card" :style="{width:width}">
         <div class="top">
-            <div class="data">
+            <p class="time">
             2025.05.20
-            </div>
+            </p>
+
+            <p class="label">  {{ note.type + " " + note.label }}  </p>
+
         </div>
         <p class="message">
-            this is a test message from Closure.
-            aaa
-            abbbb
-            dddddd/
-            bbb\\\
-            aaa
+            <!-- this is a test message from Closure. -->
+            {{ this.note.message }}
         </p>
         <div class="foot">
             <div class="foot-left">
-                <span class="iconfont icon-zan1"></span>
-                <span class="iconfont icon-shoucang1">1</span>
+                <div id="icon">
+                    <span class="iconfont icon-zan1"></span>
+                    <span class="value">{{ this.note.like }}</span>
+                </div>
+                <div id="icon">
+                    <span class="iconfont icon-shoucang1"></span>
+                    <span class="value">{{ note.favor }}</span>
+                </div>
             </div>
 
-            <div class="author">closure</div>
+            <div class="author">{{ note.name }}</div>
         </div>
     </div>
 
 </template>
 
-<script>
+<script> 
+
+// import { node } from 'mock';
+
 export default {
+    data() {
+        return {
+
+        }
+    },
+
     props: {
         width: {
             default: '288px',
         },
         note: {
-            default: {
-
-            },
+            type: Object,
+            default: () => ({}),
         }
-    }
+    },
+
+    created() {
+        // console.log(this.note);
+        console.log();
+        
+        
+        
+        
+    },
 }
 </script>
 

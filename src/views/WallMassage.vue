@@ -12,7 +12,7 @@
             >{{ e }}</p>
         </div>
         <div class="card">
-            <node-card-vue v-for="(e, index) in node" :key="index" :note="e"
+            <node-card-vue v-for="(e, index) in note" :key="index" :note="e"
                 class="card-inner"
             ></node-card-vue>
         </div>
@@ -31,7 +31,7 @@ export default {
             label,
             id: 0,  // 切换留言板和照片墙
             nlabel: -1,  // 选中的标签，默认-1 all
-            node: node.data,
+            note: node.data,
         }
     },
     components: {
