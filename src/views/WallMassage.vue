@@ -22,7 +22,7 @@
             <span class="iconfont icon-zengjia"></span>
         </div>
 
-        <yk-model></yk-model>
+        <yk-model :model-title=title></yk-model>
 
     </div>
 </template>
@@ -40,6 +40,7 @@ export default {
             id: 0,  // 切换留言板和照片墙
             nlabel: -1,  // 选中的标签，默认-1 all
             note: node.data,
+            title: '写留言',
         }
     },
     components: {

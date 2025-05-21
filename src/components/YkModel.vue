@@ -1,7 +1,7 @@
 <template>
     <div class="yk-model">
         <div class="yk-model-head">
-            <p class="model-name">写留言</p>
+            <p class="model-name">{{ modelTitle }}</p>
             <span class="iconfont icon-guanbijiantou"></span>
             
         </div>
@@ -11,10 +11,17 @@
 
 </template>
 
-<script>
-export default {
+<script setup>
+import { defineProps } from 'vue';
 
-}
+const props = defineProps({
+    modelTitle: {
+        default: '标题',
+    },
+})
+
+console.log(props);
+
 </script>
 
 <style lang="less" scoped>
