@@ -22,6 +22,7 @@
             <span class="iconfont icon-zengjia"></span>
         </div>
 
+        <yk-model></yk-model>
 
     </div>
 </template>
@@ -30,6 +31,7 @@
 import { wallType, label } from '@/utils/data';
 import {node} from '../../mock/index'
 import NodeCardVue from '@/components/NodeCard.vue';
+import YkModel from '@/components/YkModel.vue';
 export default {
     data() {
         return {
@@ -42,6 +44,7 @@ export default {
     },
     components: {
         NodeCardVue,
+        YkModel,
     },
 
     methods: {
