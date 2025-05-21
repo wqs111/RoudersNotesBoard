@@ -2,7 +2,7 @@
     <div class="yk-node-card" :style="{width:width}">
         <div class="top">
             <p class="time">
-            2025.05.20
+            {{ getTime() }}
             </p>
 
             <p class="label">  {{  getLabel() }}  </p>
@@ -33,11 +33,14 @@
 <script> 
 
 import { label } from '@/utils/data';
+import { dateOne } from '@/utils/yksj';
 
 export default {
     data() {
         return {
-            label
+            
+            label,
+            dateOne,
         }
     },
 
@@ -54,12 +57,16 @@ export default {
     methods: {
         getLabel() {
             return label[this.note.type][this.note.label];
+        },
+        getTime() {
+            return dateOne(this.note.moment);
         }
     },
 
     created() {
         // console.log(this.note);
         console.log(label[this.note.type][this.note.label]);
+        console.log(this.getTime());
         
         
         
@@ -78,6 +85,10 @@ export default {
 
 .top {
     color: @gray-1;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px ;
+
 }
 
 .message {
@@ -102,13 +113,16 @@ export default {
     width: 100%;
 
     .foot-left {
+        display: flex;
+        gap: 8px;
         span {
-            font-size: 12px;
+            font-size: 15px;
             color: @gray-1;
             letter-spacing: 0;
             text-align: justify;
             line-height: 16px;
             font-weight: 400;
+            padding: auto;
             
         }
         // .iconfont {
