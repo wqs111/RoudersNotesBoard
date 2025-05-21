@@ -5,7 +5,7 @@
             2025.05.20
             </p>
 
-            <p class="label">  {{ note.type + " " + note.label }}  </p>
+            <p class="label">  {{  getLabel() }}  </p>
 
         </div>
         <p class="message">
@@ -32,12 +32,12 @@
 
 <script> 
 
-// import { node } from 'mock';
+import { label } from '@/utils/data';
 
 export default {
     data() {
         return {
-
+            label
         }
     },
 
@@ -51,9 +51,15 @@ export default {
         }
     },
 
+    methods: {
+        getLabel() {
+            return label[this.note.type][this.note.label];
+        }
+    },
+
     created() {
         // console.log(this.note);
-        console.log();
+        console.log(label[this.note.type][this.note.label]);
         
         
         
