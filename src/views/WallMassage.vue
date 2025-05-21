@@ -18,11 +18,13 @@
         </div>
         
         <!-- add message button -->
-        <div class="add">
+        <div class="add" @click="changeModel">
             <span class="iconfont icon-zengjia"></span>
         </div>
 
-        <yk-model :model-title=title></yk-model>
+        <yk-model :model-title=title @clooooose="changeModel"
+            :is-model=isModel
+        ></yk-model>
 
     </div>
 </template>
@@ -41,6 +43,7 @@ export default {
             nlabel: -1,  // 选中的标签，默认-1 all
             note: node.data,
             title: '写留言',
+            isModel: true,  // add window open or close
         }
     },
     components: {
@@ -51,7 +54,13 @@ export default {
     methods: {
         selectNode(e) {
             this.nlabel = e;
-        }
+        },
+
+        changeModel() {
+            // console.log(e);
+            this.isModel = !this.isModel;
+        },
+
     },
 }
 </script>

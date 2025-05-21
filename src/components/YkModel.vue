@@ -1,8 +1,8 @@
 <template>
-    <div class="yk-model">
+    <div class="yk-model" v-if="isModel">
         <div class="yk-model-head">
             <p class="model-name">{{ modelTitle }}</p>
-            <span class="iconfont icon-guanbijiantou"></span>
+            <span class="iconfont icon-guanbijiantou" @click="closeModel"></span>
             
         </div>
 
@@ -12,13 +12,25 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits, onMounted } from 'vue';
 
 const props = defineProps({
     modelTitle: {
         default: '标题',
     },
+    isModel: {
+        default: true,
+    },
 })
+
+const emit = defineEmits(['clooooose']);
+
+function closeModel() {
+    emit('clooooose');
+}
+
+onMounted(closeModel); // what's this?
+// ai：在组件挂载（渲染到页面）后，自动执行一次 closeModel 方法。
 
 console.log(props);
 
