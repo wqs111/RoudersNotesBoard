@@ -17,6 +17,12 @@
             ></node-card-vue>
         </div>
         
+        <!-- add message button -->
+        <div class="add">
+            <span class="iconfont icon-zengjia"></span>
+        </div>
+
+
     </div>
 </template>
 
@@ -90,6 +96,25 @@ export default {
 
         .card-inner {
             margin: 6px;
+        }
+    }
+
+    .add {
+        width: 56px;
+        height: 56px;
+        background: @gray-1;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon-zengjia {
+            color: @gray-10;  // #ffffff
+            font-size: 24px;
         }
     }
 }
