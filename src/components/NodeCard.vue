@@ -1,5 +1,5 @@
 <template>
-    <div class="yk-node-card" :style="{width:width}">
+    <div class="yk-node-card" :style="{width:width, background: cardColor[note.imgurl]}">
         <div class="top">
             <p class="time">
             {{ getTime() }}
@@ -32,13 +32,13 @@
 
 <script> 
 
-import { label } from '@/utils/data';
+import { label, cardColor } from '@/utils/data';
 import { dateOne } from '@/utils/yksj';
 
 export default {
     data() {
         return {
-            
+            cardColor,
             label,
             dateOne,
         }
