@@ -67,6 +67,8 @@ console.log(props);
             cursor: pointer;  // 点击手势
             padding: 0 12px;
         }
+
+        margin-bottom: 12px;
     }
 }
 

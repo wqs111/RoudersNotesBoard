@@ -24,7 +24,9 @@
 
         <yk-model :model-title=title @clooooose="changeModel"
             :is-model=isModel
-        ></yk-model>
+        >
+            <new-card></new-card>
+        </yk-model>
 
     </div>
 </template>
@@ -34,6 +36,7 @@ import { wallType, label } from '@/utils/data';
 import {node} from '../../mock/index'
 import NodeCardVue from '@/components/NodeCard.vue';
 import YkModel from '@/components/YkModel.vue';
+import NewCard from '@/components/NewCard.vue';
 export default {
     data() {
         return {
@@ -49,6 +52,7 @@ export default {
     components: {
         NodeCardVue,
         YkModel,
+        NewCard,
     },
 
     methods: {
@@ -124,6 +128,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
 
         .icon-zengjia {
             color: @gray-10;  // #ffffff
