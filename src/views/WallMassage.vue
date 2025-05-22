@@ -13,17 +13,18 @@
         </div>
         <div class="card">
             <node-card-vue v-for="(e, index) in note" :key="index" :note="e"
-                class="card-inner"
+                class="card-inner" :class="{cardselected: index==cardselected}"
+                @click="selectCard(index)"
             ></node-card-vue>
         </div>
         
         <!-- add message button -->
-        <div class="add" @click="changeModel">
+        <div class="add" @click="changeModel" v-show="!isModel">
             <span class="iconfont icon-zengjia"></span>
         </div>
 
         <yk-model :model-title=title @clooooose="changeModel"
-            :is-model=isModel
+            :is-model=isModel 
         >
             <new-card :id="id" @addClose="changeModel"></new-card> <!-- label接收id区分留言和照片 -->
         </yk-model>
@@ -47,6 +48,7 @@ export default {
             note: node.data,
             title: '写留言',
             isModel: true,  // add window open or close
+            cardselected: -1, // 查看index的card
         }
     },
     components: {
@@ -63,6 +65,10 @@ export default {
         changeModel() {
             // console.log(e);
             this.isModel = !this.isModel;
+        },
+
+        selectCard(index) {
+            this.cardselected = index;
         },
 
     },
@@ -113,6 +119,10 @@ export default {
 
         .card-inner {
             margin: 6px;
+        }
+
+        .cardselected {
+            border: 1px solid @primary-color;
         }
     }
 
