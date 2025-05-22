@@ -1,11 +1,13 @@
 <template>
     <div class="new-card">
         <div class="colors">
-            <p class="color-li" v-for="(e, index) in cardColor1" :key="index" :style="{background: e}"
+            <p class="color-li" v-for="(e, index) in cardColor1" :key="index" 
+                :style="{background: e}" :class="{colorselected:index==colorSelected}"
+                @click="changeColor(index)"
 
             ></p>
         </div>
-        <div class="card-main">
+        <div class="card-main" :style="{background: cardColor[colorSelected]}">
             <textarea placeholder="Just write something..." class="message" 
                 maxlength="220"
             ></textarea>
@@ -21,13 +23,19 @@ export default {
         return {
             cardColor1,
             cardColor,
-            selected: 0,  // current color
+            colorSelected: 0,  // current color
         }
     },
 
     props: {
 
     },
+
+    methods: {
+        changeColor(index) {
+            this.colorSelected = index;
+        }
+    }
 }
 </script>
 
@@ -44,7 +52,7 @@ export default {
             float: left;
         }
 
-        .color-selected {
+        .colorselected {
             border: 1px solid rgba(59,115,240,1);
         }
     }
@@ -52,7 +60,7 @@ export default {
     .card-main {
         height: 240px;
         width: 100%;
-        background: rgba(252,175,162,0.31);
+
         padding: 12px;
         box-sizing: border-box;  // ?
         .message {
