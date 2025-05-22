@@ -25,7 +25,7 @@
         <yk-model :model-title=title @clooooose="changeModel"
             :is-model=isModel
         >
-            <new-card :id="id"></new-card> <!-- label接收id区分留言和照片 -->
+            <new-card :id="id" @addClose="changeModel"></new-card> <!-- label接收id区分留言和照片 -->
         </yk-model>
 
     </div>

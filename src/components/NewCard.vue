@@ -9,9 +9,11 @@
         </div>
         <div class="card-main" :style="{background: cardColor[colorSelected]}">
             <textarea placeholder="Just write something..." class="message" 
-                maxlength="220"
+                maxlength="220" v-model="message"
             ></textarea>
-            <input type="text" placeholder="Sign your callname" class="name">
+            <input type="text" placeholder="Sign your callname" class="name"
+                v-model="name"
+            >
         </div>
         <div class="labels">
             <p class="title">选择标签</p>
@@ -25,16 +27,22 @@
         </div>
 
         <div class="arknights-disclaimer">
-            <p>※ 本网站受罗德岛安保协议保护</p>
+            <p>※ 本网站受罗德岛安全协议保护</p>
             <p>※ 留言内容可能因天灾或源石虫啃食线路丢失</p>
             <p>※ 阿米娅有权删除任何涉及“博士加班”的抱怨</p>
             <p>※ 最终解释权归 © 2025 罗德岛制药 所有</p>
+        </div>
+
+        <div class="foot-btn">
+            <YkButton  nom="secondary" style="cursor: pointer;" @click="closeModel()">取消</YkButton>
+            <yk-button  class="submit" style="cursor: pointer; " @click="closeModel">创建</yk-button>
         </div>
     </div>
 </template>
 
 <script>
 import { cardColor, cardColor1, label } from '@/utils/data';
+import YkButton from './YkButton.vue';
 export default {
     data() {
         return {
@@ -43,7 +51,12 @@ export default {
             colorSelected: 0,  // current color
             label,
             lchoosen: 0,
+            message: '',  // inputarea
+            name: '',     // callname
         }
+    },
+    components: {
+        YkButton,
     },
 
     props: {
@@ -60,6 +73,10 @@ export default {
         choseLabel(index) {
             this.lchoosen = index;
         },
+
+        closeModel() {
+            this.$emit('addClose');
+        }
     }
 }
 </script>
@@ -132,6 +149,16 @@ export default {
 
 
     }
+
+    .foot-btn {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 12px;
+        .submit {
+            width: 60%;
+        }
+    }
+
     .arknights-disclaimer {
         position: absolute;
         bottom: 60px;
