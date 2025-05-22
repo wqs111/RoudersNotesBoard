@@ -28,17 +28,11 @@ export default {
     },
 
     created() {
-        this.getUser();
+
     },
 
     methods: {
-        getUser() {
-            this.axios.post("http://182.61.20.123:3001/singin/match", { data: 'aaa', pwd: 'bbb' })
-                .then((res) => {
-                    console.log(res)
-                
-            })
-        }
+
     }
 }
 </script>
