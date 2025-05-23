@@ -22,6 +22,10 @@
                     <span class="iconfont icon-shoucang1"></span>
                     <span class="value">{{ note.favor }}</span>
                 </div>
+                <div id="icon">
+                    <span class="iconfont icon-xiaoxi"></span>
+                    <span class="value">{{ note.comment }}</span>
+                </div>
             </div>
 
             <div class="author">{{ note.name }}</div>
@@ -64,13 +68,9 @@ export default {
     },
 
     created() {
-        // console.log(this.note);
-        console.log(label[this.note.type][this.note.label]);
-        console.log(this.getTime());
-        
-        
-        
-        
+        console.log(this.note.comment);
+        // console.log(label[this.note.type][this.note.label]);
+        // console.log(this.getTime());
     },
 }
 </script>

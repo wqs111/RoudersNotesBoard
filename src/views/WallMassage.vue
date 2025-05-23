@@ -19,14 +19,15 @@
         </div>
         
         <!-- add message button -->
-        <div class="add" @click="changeModel" v-show="!isModel">
+        <div class="add" @click="addCard" v-show="!isModel">
             <span class="iconfont icon-zengjia"></span>
         </div>
 
         <yk-model :model-title=title @clooooose="changeModel"
             :is-model=isModel 
         >
-            <new-card :id="id" @addClose="changeModel"></new-card> <!-- label接收id区分留言和照片 -->
+            <new-card :id="id" @addClose="changeModel" v-if="cardselected==-1"></new-card> <!-- label接收id区分留言和照片 -->
+            <card-detail :note="note[cardselected]" v-if="cardselected!=-1"></card-detail>
         </yk-model>
 
     </div>
@@ -38,6 +39,7 @@ import {node} from '../../mock/index'
 import NodeCardVue from '@/components/NodeCard.vue';
 import YkModel from '@/components/YkModel.vue';
 import NewCard from '@/components/NewCard.vue';
+import CardDetail from '@/components/CardDetail.vue';
 export default {
     data() {
         return {
@@ -55,6 +57,7 @@ export default {
         NodeCardVue,
         YkModel,
         NewCard,
+        CardDetail,
     },
 
     methods: {
@@ -68,8 +71,22 @@ export default {
         },
 
         selectCard(index) {
-            this.cardselected = index;
+            if (index === this.cardselected) {
+                this.changeModel();
+            } else {
+                this.cardselected = index;
+                this.title = '查看详情';
+                this.isModel = true;
+            }
         },
+
+        addCard() {
+            this.cardselected = -1;
+            this.title = '写留言';
+            this.isModel = true;
+        },
+
+
 
     },
 }

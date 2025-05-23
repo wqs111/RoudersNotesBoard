@@ -10,7 +10,7 @@ export const node = Mock.mock({
         "name": "@cname",
         "like|0-120": 0,
         "favor|0-120": 0,
-        "comment|0|120": 0,
+        "comment|0-120": 0,
         "imgurl|0-4": 0,
         "revoke|0-20": 0,
         "report|0-20": 0,
