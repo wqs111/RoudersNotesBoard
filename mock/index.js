@@ -1,5 +1,7 @@
+
 let Mock = require('mockjs')
 
+// note data
 export const node = Mock.mock({
     "data|20": [{
         "moment": new Date(),
@@ -16,5 +18,17 @@ export const node = Mock.mock({
         "report|0-20": 0,
 
         "type":0,
+    }]
+})
+
+// comment data
+export const comment = Mock.mock({
+    "data|19": [{
+        "moment": new Date(),
+        "id|+1": 1,
+        "userId|+1": 10,
+        "message|24-96": "@cword",
+        "name": "@cname",
+        "imgurl|0-9": 0,
     }]
 })

@@ -68,7 +68,7 @@ export default {
     },
 
     created() {
-        console.log(this.note.comment);
+        // console.log(this.note.comment);
         // console.log(label[this.note.type][this.note.label]);
         // console.log(this.getTime());
     },

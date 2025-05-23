@@ -30,3 +30,16 @@ export const cardColor1 = [
     'rgba(168,237,138,1)',
     'rgba(202,167,247,1)',
 ]
+
+export const portrait = [
+    'linear-gradient(180deg, #FFA9D9 0%, #E83D3D 100%)',
+    'linear-gradient(180deg, #FFA7EB 0%, #F026A8 100%)',
+    'linear-gradient(180deg, #A18CD1 0%, #FBC2EB 100%)',
+    'linear-gradient(180deg, #FDCB82 0%, #F7CE68 100%)',
+    'linear-gradient(180deg, #43E97B 0%, #38F9D7 100%)',
+    'linear-gradient(180deg, #667EEA 0%, #764BA2 100%)',
+    'linear-gradient(180deg, #F7971E 0%, #FFD200 100%)',
+    'linear-gradient(180deg, #F953C6 0%, #B91D73 100%)',
+    'linear-gradient(180deg, #30Cfd0 0%, #330867 100%)',
+    'linear-gradient(180deg, #5EFCE8 0%, #736EFE 100%)',
+]
