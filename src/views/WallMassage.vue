@@ -11,11 +11,16 @@
             :class="{lselected:nlabel==index}" @click="selectNode(index)"
             >{{ e }}</p>
         </div>
-        <div class="card">
+        <div class="card" v-show="id==0">
             <node-card-vue v-for="(e, index) in note" :key="index" :note="e"
                 class="card-inner" :class="{cardselected: index==cardselected}"
                 @click="selectCard(index)"
             ></node-card-vue>
+        </div>
+
+        <div class="photo" v-show="id==1">
+            photo
+
         </div>
         
         <!-- add message button -->
@@ -45,7 +50,7 @@ export default {
         return {
             wallType,
             label,
-            id: 0,  // 切换留言板和照片墙
+            // id: 0, 转为动态，该元素注销  // 切换留言板和照片墙
             nlabel: -1,  // 选中的标签，默认-1 all
             note: node.data,
             title: '写留言',
@@ -89,6 +94,11 @@ export default {
 
 
     },
+    computed: {
+        id() {
+            return this.$route.query.id; // current page id
+        }
+    },
 }
 </script>
 
@@ -102,6 +112,7 @@ export default {
         font-size: 56px;
         text-align: center;
         font-weight: 600;
+        margin-top: 100px;
     }
 
     .slogan {

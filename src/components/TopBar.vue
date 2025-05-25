@@ -5,8 +5,12 @@
             <p class="logo-name">Rhodes Board</p>
         </div>
         <div class="menu">
-            <yk-button-vue nom="cprimary" class="menu-message">留言板</yk-button-vue>
-            <yk-button-vue nom="csecondary" class="photo">照片墙</yk-button-vue>
+            <yk-button-vue :nom="id==0? 'cprimary' : 'csecondary'" class="menu-message"
+                @click="changeWall(0)"
+            >留言板</yk-button-vue>
+            <yk-button-vue :nom="id==1? 'cprimary' : 'csecondary'" class="photo"
+                @click="changeWall(1)"
+            >照片墙</yk-button-vue>
         </div>
         <div class="user">
             <div class="user-head"></div>
@@ -22,6 +26,20 @@ export default {
 
         }
     }, 
+
+    computed: {
+        id() {
+            return this.$route.query.id; // current page id
+        }
+    },
+
+    methods: {
+        changeWall(newid) {
+            this.$router.push({
+                query: {id: newid},
+            })
+        }
+    },
     components: {
         YkButtonVue,
     }

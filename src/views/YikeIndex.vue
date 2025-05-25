@@ -2,7 +2,7 @@
     <div>
 
         <topBar></topBar>
-        <video class="bg-video"></video>
+        <!-- <video class="bg-video"></video> -->
         <router-view></router-view>
         <foot-bar-vue></foot-bar-vue>
     </div>
