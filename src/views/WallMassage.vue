@@ -18,8 +18,8 @@
             ></node-card-vue>
         </div>
 
-        <div class="photo" v-show="id==1">
-            photo
+        <div class="photo-list" v-show="id==1">
+            <PhotoCard :photo="e" v-for="(e, index) in photo" :key="index"></PhotoCard>
 
         </div>
         
@@ -40,11 +40,12 @@
 
 <script>
 import { wallType, label } from '@/utils/data';
-import {node} from '../../mock/index'
+import {node, photo} from '../../mock/index'
 import NodeCardVue from '@/components/NodeCard.vue';
 import YkModel from '@/components/YkModel.vue';
 import NewCard from '@/components/NewCard.vue';
 import CardDetail from '@/components/CardDetail.vue';
+import PhotoCard from '@/components/PhotoCard.vue';
 export default {
     data() {
         return {
@@ -53,6 +54,7 @@ export default {
             // id: 0, 转为动态，该元素注销  // 切换留言板和照片墙
             nlabel: -1,  // 选中的标签，默认-1 all
             note: node.data,
+            photo: photo.data,
             title: '写留言',
             isModel: true,  // add window open or close
             cardselected: -1, // 查看index的card
@@ -63,6 +65,7 @@ export default {
         YkModel,
         NewCard,
         CardDetail,
+        PhotoCard,
     },
 
     methods: {
@@ -152,6 +155,12 @@ export default {
         .cardselected {
             border: 1px solid @primary-color;
         }
+    }
+
+    .photo-list {
+        column-count: 3;         // 3列瀑布流，可根据需要调整
+        column-gap: 16px;        // 列间距
+        padding: 16px;
     }
 
     .add {
