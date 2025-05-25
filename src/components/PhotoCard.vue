@@ -1,5 +1,5 @@
 <template>
-    <div class="photo">
+    <div class="single-photo">
         <img :src="require('../../static/' + 'ark'+photo.imgurl+'.jpg')" alt="">
     </div>
 
@@ -30,7 +30,7 @@ export default {
 <style lang="less">
 
 /* PhotoCard.vue 内部样式 */
-.photo {
+.single-photo {
     break-inside: avoid;     // 防止图片被拆分
     margin-bottom: 16px;
     border-radius: 10px;
@@ -43,6 +43,8 @@ export default {
     }
     img {
         width: 100%;
+        min-width: 150px;
+        min-height: auto;
         display: block;
         border-radius: 10px;
     }

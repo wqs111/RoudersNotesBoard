@@ -8,7 +8,7 @@
             <yk-button-vue :nom="id==0? 'cprimary' : 'csecondary'" class="menu-message"
                 @click="changeWall(0)"
             >留言板</yk-button-vue>
-            <yk-button-vue :nom="id==1? 'cprimary' : 'csecondary'" class="photo"
+            <yk-button-vue :nom="id==1? 'cprimary' : 'csecondary'" class="photo-btn"
                 @click="changeWall(1)"
             >照片墙</yk-button-vue>
         </div>

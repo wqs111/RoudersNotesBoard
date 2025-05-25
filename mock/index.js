@@ -37,7 +37,7 @@ export const photo = Mock.mock({
         "revoke|0-20": 0,
         "report|0-20": 0,
 
-        "type":0,
+        "type":1,
     }]
 })
 
