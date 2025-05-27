@@ -35,7 +35,7 @@
 
         <div class="foot-btn">
             <YkButton  nom="secondary" style="cursor: pointer;" @click="closeModel()">取消</YkButton>
-            <yk-button  class="submit" style="cursor: pointer; " @click="closeModel">创建</yk-button>
+            <yk-button  class="submit" style="cursor: pointer; "  @click="apiTest()">创建</yk-button>
         </div>
     </div>
 </template>
@@ -76,6 +76,26 @@ export default {
 
         closeModel() {
             this.$emit('addClose');
+        },
+
+        apiTest() {
+            let data = {
+                type: 0,
+                message: 'hello world',
+                name: 'doctor',
+                userId: '3',
+                moment: new Date(),
+                label: 0,
+                color: 3,
+                imgurl: 3,
+            } 
+
+            this.axios
+                .post("http://localhost:3000/insertwall", data)
+                .then((res) => {
+                    console.log(res);
+                    
+                })
         }
     }
 }
