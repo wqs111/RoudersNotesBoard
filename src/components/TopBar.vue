@@ -36,8 +36,11 @@ export default {
     methods: {
         changeWall(newid) {
             this.$router.push({
-                query: {id: newid},
-            })
+                query: {
+                    id: newid,
+                },
+            });
+            
         }
     },
     components: {
