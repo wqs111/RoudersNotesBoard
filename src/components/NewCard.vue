@@ -35,7 +35,7 @@
 
         <div class="foot-btn">
             <YkButton  nom="secondary" style="cursor: pointer;" @click="closeModel()">取消</YkButton>
-            <yk-button  class="submit" style="cursor: pointer; "  @click="apiTest()">创建</yk-button>
+            <yk-button  class="submit" style="cursor: pointer; "  @click="submit()">创建</yk-button>
         </div>
     </div>
 </template>
@@ -53,6 +53,8 @@ export default {
             lchoosen: 0,
             message: '',  // inputarea
             name: '',     // callname
+
+            user: this.$store.state.user, // 拿出store中的user变量
         }
     },
     components: {
@@ -76,6 +78,27 @@ export default {
 
         closeModel() {
             this.$emit('addClose');
+        },
+
+        // 提交数据
+        submit() {
+            let name = '匿名';
+            if (this.name) {
+                name = this.name;
+            }
+
+            let data = {
+                type: this.id,
+                message: this.message,
+                name: name,
+                userId: this.user.id,
+                moment: new Date(),
+                label: this.lchoosen,
+                color: 5,
+                imgurl: '',
+            };
+            console.log(data);
+            
         },
 
         apiTest() {
