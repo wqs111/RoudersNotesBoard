@@ -24,7 +24,7 @@
         </div>
         
         <!-- add message button -->
-        <div class="add" @click="addCard" v-show="!isModel">
+        <div class="add" @click="addCard" v-show="!isModel" @clickbt="addclick">
             <span class="iconfont icon-zengjia"></span>
         </div>
 
@@ -93,6 +93,11 @@ export default {
             this.title = '写留言';
             this.isModel = true;
         },
+
+        addclick(e) {
+            console.log(e);
+            
+        }
 
 
 

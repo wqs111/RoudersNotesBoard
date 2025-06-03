@@ -43,6 +43,7 @@
 <script>
 import { cardColor, cardColor1, label } from '@/utils/data';
 import YkButton from './YkButton.vue';
+import { insertWallApi } from '@/api';
 export default {
     data() {
         return {
@@ -98,7 +99,16 @@ export default {
                 imgurl: '',
             };
             console.log(data);
-            
+            if (this.message && this.id == 0) {
+                data.color = this.colorSelected;
+                insertWallApi(data).then((res) => {
+                    console.log(res);
+                    
+                    this.message = '';
+                    // this.$emit("clickbt", data);
+                    // this.$message({ type: "success", message: "感谢你的记录！" })
+                });
+            }
         },
 
         apiTest() {
