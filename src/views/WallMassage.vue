@@ -24,14 +24,14 @@
         </div>
         
         <!-- add message button -->
-        <div class="add" @click="addCard" v-show="!isModel" @clickbt="addclick">
+        <div class="add" @click="addCard" v-show="!isModel" >
             <span class="iconfont icon-zengjia"></span>
         </div>
 
         <yk-model :model-title=title @clooooose="changeModel"
             :is-model=isModel 
         >
-            <new-card :id="id" @addClose="changeModel" v-if="cardselected==-1"></new-card> <!-- label接收id区分留言和照片 -->
+            <new-card :id="id" @addClose="changeModel" @clickbt="addclick" v-if="cardselected==-1"></new-card> <!-- label接收id区分留言和照片 -->
             <card-detail :note="note[cardselected]" v-if="cardselected!=-1"></card-detail>
         </yk-model>
 
@@ -95,9 +95,11 @@ export default {
         },
 
         addclick(e) {
-            console.log(e);
-            
-        }
+            console.log("addclick"+e);
+            this.changeModel();
+        },
+
+
 
 
 

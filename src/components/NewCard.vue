@@ -105,7 +105,7 @@ export default {
                     console.log(res);
                     
                     this.message = '';
-                    // this.$emit("clickbt", data);
+                    this.$emit("clickbt", data);
                     // this.$message({ type: "success", message: "感谢你的记录！" })
                 });
             }
