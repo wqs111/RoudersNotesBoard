@@ -43,3 +43,14 @@ export const portrait = [
     'linear-gradient(180deg, #30Cfd0 0%, #330867 100%)',
     'linear-gradient(180deg, #5EFCE8 0%, #736EFE 100%)',
 ]
+
+export const none = [
+    {
+        // url: require('../assets/images/'),
+        msg: '还没有留言，贴上一张吧',
+    },
+    {
+        // url: require('../assets/images/'), 直接CDN link
+        msg: '还没有照片，贴上一张吧',
+    },
+]

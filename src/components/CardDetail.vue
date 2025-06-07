@@ -10,7 +10,7 @@
 
         <div class="submit">
             <input type="name" class="name" placeholder="签名">
-            <YkButton :size="small" :nom="cprimary" class="sb-btn" >提交</YkButton>
+            <YkButton size="small" nom="cprimary" class="sb-btn" >提交</YkButton>
         </div>
 
         <div class="rr">
@@ -18,7 +18,7 @@
             <p class="report">汇报人事部</p>
         </div>
 
-        <p class="comment-title">评论 {{ note.comment }}</p>
+        <p class="comment-title">评论 {{ note.comment[0].count }}</p>
         <div class="comment">
             <div class="comment-li" v-for="(e, index) in commentd" :key="index">
                 <div class="user-head" :style="{background:portrait[e.imgurl]}">

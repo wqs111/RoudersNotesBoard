@@ -10,21 +10,21 @@
         </div>
         <p class="message">
             <!-- this is a test message from Closure. -->
-            {{ this.note.message }}
+            {{ note.message }}
         </p>
         <div class="foot">
             <div class="foot-left">
                 <div id="icon">
                     <span class="iconfont icon-zan1"></span>
-                    <span class="value">{{ this.note.like }}</span>
+                    <span class="value">{{ note.like[0].count }}</span>
                 </div>
                 <div id="icon">
                     <span class="iconfont icon-shoucang1"></span>
-                    <span class="value">{{ note.favor }}</span>
+                    <span class="value">nouse</span>
                 </div>
                 <div id="icon">
                     <span class="iconfont icon-xiaoxi"></span>
-                    <span class="value">{{ note.comment }}</span>
+                    <span class="value">{{ note.comment[0].count }}</span>
                 </div>
             </div>
 

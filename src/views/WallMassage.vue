@@ -12,7 +12,8 @@
             >{{ e }}</p>
         </div>
         <div class="card" v-show="id==0">
-            <node-card-vue v-for="(e, index) in note" :key="index" :note="e"
+            <!-- note? -->
+            <node-card-vue v-for="(e, index) in cards" :key="index" :note="e"
                 class="card-inner" :class="{cardselected: index==cardselected}"
                 @click="selectCard(index)"
             ></node-card-vue>
@@ -22,6 +23,17 @@
             <PhotoCard :photo="e" v-for="(e, index) in photo" :key="index"></PhotoCard>
 
         </div>
+
+        <!-- if no cards -->
+         <div class="none-msg" v-if="isOk == 0"> 
+            <img width="100" height="100" src="https://img.icons8.com/dusk/100/note.png" alt="note"/>
+            <p>{{ none[id].msg }}</p>
+         </div>
+
+         <div class="no-more" v-show="isOk == 2">
+            <p>没有更多</p>
+         </div>
+
         
         <!-- add message button -->
         <div class="add" @click="addCard" v-show="!isModel" >
@@ -32,32 +44,38 @@
             :is-model=isModel 
         >
             <new-card :id="id" @addClose="changeModel" @clickbt="addclick" v-if="cardselected==-1"></new-card> <!-- label接收id区分留言和照片 -->
-            <card-detail :note="note[cardselected]" v-if="cardselected!=-1"></card-detail>
+            <card-detail :note="cards[cardselected]" v-if="cardselected!=-1"></card-detail>
         </yk-model>
 
     </div>
 </template>
 
 <script>
-import { wallType, label } from '@/utils/data';
-import {node, photo} from '../../mock/index'
+import { wallType, label, none } from '@/utils/data';
+import { photo } from '../../mock/index'
 import NodeCardVue from '@/components/NodeCard.vue';
 import YkModel from '@/components/YkModel.vue';
 import NewCard from '@/components/NewCard.vue';
 import CardDetail from '@/components/CardDetail.vue';
 import PhotoCard from '@/components/PhotoCard.vue';
+import { findWallPageApi } from '@/api/index';
 export default {
     data() {
         return {
             wallType,
             label,
+            none,
             // id: 0, 转为动态，该元素注销  // 切换留言板和照片墙
+            user: this.$store.state.user,
             nlabel: -1,  // 选中的标签，默认-1 all
-            note: node.data,
+            cards: [],    // note 修改为 cards 注销mock数据
+            isOk: -1, // -1 真实数据准备中， 0 数据为空
             photo: photo.data,
             title: '写留言',
             isModel: true,  // add window open or close
-            cardselected: -1, // 查看index的card
+            cardselected: -1, // 查看index的card    
+            page: 1,
+            pagesize: 20,
         }
     },
     components: {
@@ -99,7 +117,40 @@ export default {
             this.changeModel();
         },
 
+        getWallCard(id) {
+            if (this.page > 0) {
+                this.isok = -1;
+                let data = {
+                    type: id,
+                    page: this.page,
+                    pagesize: this.pagesize,
+                    userId: this.user.id,
+                    label: this.nlabel,
+                }
+                console.log("getWallCard");
+                findWallPageApi(data).then((res) => {
+                    // 拿到带有各种信息的一个card数组
+                    this.cards = this.cards.concat(res.message); // concat ??
+                    // console.log(this.cards);
+                    
+                    // update page
+                    if (res.message.length) {
+                        this.page++;
+                    } else {
+                        this.page = 0;
+                    }
+                    setTimeout(() => {
+                        if (this.cards.length > 0) {
+                            this.isok = 1;
+                        } else {
+                            this.isok = 0;
+                        }
+                    }, 10)
 
+                    // TODO: photo 
+                })
+            }
+        }
 
 
 
@@ -109,6 +160,9 @@ export default {
             return this.$route.query.id; // current page id
         }
     },
+    mounted() {
+        this.getWallCard(0);
+    }
 }
 </script>
 
@@ -187,6 +241,28 @@ export default {
         .icon-zengjia {
             color: @gray-10;  // #ffffff
             font-size: 24px;
+        }
+    }
+
+    .none-msg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 220px;
+        color: @gray-2;
+        font-size: 18px;
+        opacity: 0.85;
+        margin-top: 40px;
+
+        img {
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+        p {
+            margin: 0;
+            font-size: 18px;
+            color: @gray-1;
         }
     }
 }
