@@ -18,7 +18,7 @@
             <p class="report">汇报人事部</p>
         </div>
 
-        <p class="comment-title">评论 {{ note.comment[0].count }}</p>
+        <p class="comment-title">评论 {{ note.comcount && note.comcount[0] ? note.comcount[0].count : 0 }}</p>
         <div class="comment">
             <div class="comment-li" v-for="(e, index) in commentd" :key="index">
                 <div class="user-head" :style="{background:portrait[e.imgurl]}">

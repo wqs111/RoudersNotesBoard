@@ -103,10 +103,30 @@ export default {
                 data.color = this.colorSelected;
                 insertWallApi(data).then((res) => {
                     console.log(res);
+
+                    // 完整card数据
+                    let cardD = {
+                        type: this.id,
+                        message: this.message,
+                        name: name,
+                        userId: this.user.id,
+                        moment: new Date(),
+                        label: this.lchoosen,
+                        color: this.colorSelected,
+                        imgurl: '',
+                        id: res.message.insertId, // wtf???
+                        // islike: [{ count: 0 }],
+                        like: [{ count: 0 }],
+                        comcount: [{ count: 0 }],
+                        report: [{ count: 0 }],
+                        revoke: [{ count: 0 }],
+                        
+                    };
                     
-                    this.message = '';
-                    this.$emit("clickbt", data);
+                    
+                    this.$emit("clickbt", cardD);
                     this.$message({ type: "success", message: "感谢你的记录！" })
+                    this.message = '';
                 });
             }
         },

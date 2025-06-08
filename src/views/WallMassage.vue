@@ -25,12 +25,12 @@
         </div>
 
         <!-- if no cards -->
-         <div class="none-msg" v-if="isOk == 0"> 
+         <div class="none-msg" v-if="page == 0"> 
             <img width="100" height="100" src="https://img.icons8.com/dusk/100/note.png" alt="note"/>
             <p>{{ none[id].msg }}</p>
          </div>
 
-         <div class="no-more" v-show="isOk == 2">
+         <div class="none-msg" v-show="page != 0 && isOk == 0">
             <p>没有更多</p>
          </div>
 
@@ -87,8 +87,14 @@ export default {
     },
 
     methods: {
+        // change label
         selectNode(e) {
             this.nlabel = e;
+
+            // 清空当前数据
+            this.cards = [];
+            this.page = 1;
+            this.getWallCard(this.id);
         },
 
         changeModel() {
@@ -113,13 +119,16 @@ export default {
         },
 
         addclick(e) {
-            console.log("addclick"+e);
+            console.log("addclick");
+            console.log(e);
+            
             this.changeModel();
+            this.cards.unshift(e); // 将新card插入头部
         },
 
         getWallCard(id) {
             if (this.page > 0) {
-                this.isok = -1;
+                this.isOk = -1;
                 let data = {
                     type: id,
                     page: this.page,
@@ -141,9 +150,9 @@ export default {
                     }
                     setTimeout(() => {
                         if (this.cards.length > 0) {
-                            this.isok = 1;
+                            this.isOk = 1;
                         } else {
-                            this.isok = 0;
+                            this.isOk = 0;
                         }
                     }, 10)
 
@@ -191,6 +200,7 @@ export default {
         margin-top: 40px;
 
         .label-list {
+            cursor: pointer;
             padding: 0 14px;
             line-height: 28px;
             margin: @padding-4;
