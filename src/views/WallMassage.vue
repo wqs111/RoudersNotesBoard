@@ -25,13 +25,13 @@
         </div>
 
         <!-- if no cards -->
-         <div class="none-msg" v-if="page == 0"> 
+         <div class="none-msg" v-if="page == 0 && isOk == 0"> 
             <img width="100" height="100" src="https://img.icons8.com/dusk/100/note.png" alt="note"/>
             <p>{{ none[id].msg }}</p>
          </div>
 
-         <div class="none-msg" v-show="page != 0 && isOk == 0">
-            <p>没有更多</p>
+         <div class="none-msg" v-show="page == 0 && isOk == 1">
+            <p>没有更多...</p>
          </div>
 
         
@@ -87,6 +87,21 @@ export default {
     },
 
     methods: {
+        // 监听页面滚动
+        handleScroll() {
+            // 距离底部小于100px时触发
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            if (scrollTop + windowHeight >= docHeight - 100) {
+                // 只有还有更多数据时才加载
+                if (this.page > 0 && this.isOk !== -1) {
+                    this.getWallCard(this.id);
+                }
+            }
+        },
+
+
         // change label
         selectNode(e) {
             this.nlabel = e;
@@ -150,9 +165,9 @@ export default {
                     }
                     setTimeout(() => {
                         if (this.cards.length > 0) {
-                            this.isOk = 1;
+                            this.isOk = 1; // 已有数据但没有更多
                         } else {
-                            this.isOk = 0;
+                            this.isOk = 0; // 没有任何数据
                         }
                     }, 10)
 
@@ -171,7 +186,13 @@ export default {
     },
     mounted() {
         this.getWallCard(0);
-    }
+
+        // 监听页面滚动
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    },
 }
 </script>
 
