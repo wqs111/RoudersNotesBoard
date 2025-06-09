@@ -22,7 +22,7 @@
 
         <p class="comment-title">评论 {{ note.comcount && note.comcount[0] ? note.comcount[0].count : 0 }}</p>
         <div class="comment">
-            <div class="comment-li" v-for="(e, index) in comment" :key="index">
+            <div class="comment-li" v-for="(e, index) in comments" :key="index">
                 <div class="user-head" :style="{background:portrait[e.imgurl]}">
 
                 </div>
@@ -32,7 +32,7 @@
                         <p class="time">{{ dateOne(e.moment) }}</p>
                     </div>
                     <div class="com-message">
-                        {{ e.message }}
+                        {{ e.comment }}
                     </div>
                 </div>
             </div>
@@ -44,20 +44,22 @@
 <script >
 import NodeCard from './NodeCard.vue';
 import YkButton from './YkButton.vue';
-import { comment } from '../../mock/index';
 import { portrait } from '@/utils/data'
 import { dateOne } from '@/utils/yksj';
-import { insertCommentApi } from '@/api';
+import { findCommentPageApi, insertCommentApi } from '@/api';
+
 export default {
     data() {
         return {
-            comment: comment.data,
+            comments: [],
             portrait,
             dateOne,
             discuss: '', // comment
             name: '',
             // isDis: true, // can submit comment
             user: this.$store.state.user,
+            nowpage: 1, // current comment page
+            pagesize: 20,
         }
     },
 
@@ -84,6 +86,32 @@ export default {
     },
 
     methods: {
+        // get comments
+        getComment() {
+            if (this.nowpage > 0) {
+                let data = {
+                    id: this.cards.id,
+                    page: this.nowpage,
+                    pagesize: this.pagesize,
+
+                };
+                findCommentPageApi(data).then((res) => {
+
+                    this.comments = this.comments.concat(res.message);
+                    console.log(this.comments);
+
+                    
+                    
+                    if (res.message.length == this.pagesize) {
+                        this.nowpage++;
+                    } else {
+                        this.nowpage = 0;
+                    }
+                })
+            }
+        },
+
+
         // 提交评论
         submit() {
             if (this.isDis) {
@@ -103,7 +131,7 @@ export default {
                 };
                 console.log(data);
                 insertCommentApi(data).then(() => {
-                    this.comment.unshift(data);
+                    this.comments.unshift(data);
                     if (!Array.isArray(this.cards.comcount) || !this.cards.comcount[0]) {
                         this.cards.comcount = [{ count: 1 }];
                     } else {
@@ -114,11 +142,23 @@ export default {
                 })
                 
             }
-        }
+        },
+
+
     },
 
     created() {
+        this.getComment();
+    },
 
+    // 监听变化触发
+    watch: {
+        cards() {
+            this.nowpage = 1;
+            this.comments = [];
+            this.getComment();
+
+        }
     }
 }
 </script>
