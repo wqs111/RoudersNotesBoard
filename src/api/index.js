@@ -9,3 +9,5 @@ export const signIpApi = () => fetch.post('/signip')
 
 
 export const findWallPageApi = data => fetch.post('/findwallpage', data)
+
+export const insertFeedbackApi = data => fetch.post('/insertfeedback', data)

@@ -15,7 +15,7 @@
             <!-- note? -->
             <node-card-vue v-for="(e, index) in cards" :key="index" :note="e"
                 class="card-inner" :class="{cardselected: index==cardselected}"
-                @click="selectCard(index)"
+                @toDetail="selectCard(index)" @like="handleLike"
             ></node-card-vue>
         </div>
 
@@ -139,6 +139,14 @@ export default {
             
             this.changeModel();
             this.cards.unshift(e); // 将新card插入头部
+        },
+
+        handleLike(id) {
+            const card = this.cards.find(c => c.id === id);
+            if (card) {
+                card.like[0].count++;
+                card.islike[0].count++;
+            }
         },
 
         getWallCard(id) {

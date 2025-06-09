@@ -115,7 +115,7 @@ export default {
                         color: this.colorSelected,
                         imgurl: '',
                         id: res.message.insertId, // wtf???
-                        // islike: [{ count: 0 }],
+                        islike: [{ count: 0 }],
                         like: [{ count: 0 }],
                         comcount: [{ count: 0 }],
                         report: [{ count: 0 }],
