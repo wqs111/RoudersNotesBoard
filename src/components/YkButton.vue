@@ -21,6 +21,7 @@ export default {
 .yk-button {
     text-align: center;
     border: none;
+    
 }
 
 .max {
@@ -66,6 +67,10 @@ export default {
 .csecondary {
     background: @gray-10;
     color: @gray-1;
+}
+
+.notallowed {
+    cursor: not-allowed;
 }
 
 </style>

@@ -4,13 +4,15 @@
         <node-card :note="note"></node-card>
 
         <div class="comment">
-            <textarea name="message" class="message" placeholder="说点什么..."></textarea>
+            <textarea name="message" class="message" placeholder="说点什么..." v-model="discuss"></textarea>
             
         </div>
 
         <div class="submit">
-            <input type="name" class="name" placeholder="签名">
-            <YkButton size="small" nom="cprimary" class="sb-btn" >提交</YkButton>
+            <input type="name" class="name" placeholder="签名" v-model="name">
+            <YkButton size="small" nom="primary" class="sb-btn" 
+                :class="{notallowed: !isDis}" @click="submit"
+            >提交</YkButton>
         </div>
 
         <div class="rr">
@@ -20,7 +22,7 @@
 
         <p class="comment-title">评论 {{ note.comcount && note.comcount[0] ? note.comcount[0].count : 0 }}</p>
         <div class="comment">
-            <div class="comment-li" v-for="(e, index) in commentd" :key="index">
+            <div class="comment-li" v-for="(e, index) in comment" :key="index">
                 <div class="user-head" :style="{background:portrait[e.imgurl]}">
 
                 </div>
@@ -45,12 +47,17 @@ import YkButton from './YkButton.vue';
 import { comment } from '../../mock/index';
 import { portrait } from '@/utils/data'
 import { dateOne } from '@/utils/yksj';
+import { insertCommentApi } from '@/api';
 export default {
     data() {
         return {
-            commentd: comment.data,
+            comment: comment.data,
             portrait,
             dateOne,
+            discuss: '', // comment
+            name: '',
+            // isDis: true, // can submit comment
+            user: this.$store.state.user,
         }
     },
 
@@ -62,8 +69,52 @@ export default {
         },
     },
 
-    methods: {
+    computed: {
+        cards() {
+            return this.note;
+        },
 
+        isDis() {
+            if (this.discuss) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    },
+
+    methods: {
+        // 提交评论
+        submit() {
+            if (this.isDis) {
+                // 随机头像
+                let img = this.user.type == 1 ? this.user.imgurl : Math.floor(Math.random() * 14);
+                let name = '匿名';
+                if (this.name) {
+                    name = this.name;
+                }
+                let data = {
+                    wallId: this.cards.id,
+                    userId: this.user.id,
+                    imgurl: img,
+                    moment: new Date(),
+                    name: name,
+                    comment: this.discuss,
+                };
+                console.log(data);
+                insertCommentApi(data).then(() => {
+                    this.comment.unshift(data);
+                    if (!Array.isArray(this.cards.comcount) || !this.cards.comcount[0]) {
+                        this.cards.comcount = [{ count: 1 }];
+                    } else {
+                        this.cards.comcount[0].count++;
+                    }
+                    this.discuss = '';
+
+                })
+                
+            }
+        }
     },
 
     created() {
