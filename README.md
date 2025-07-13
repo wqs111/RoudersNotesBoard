@@ -1,6 +1,9 @@
 # RoudersNotesBoard
 
 learn from Yike
+[backend repo](https://github.com/wqs111/RoudersNotesBackend) 
+
+see [dev_log](./dev_log.md) for more infomation 
 
 ## Project setup
 ```
